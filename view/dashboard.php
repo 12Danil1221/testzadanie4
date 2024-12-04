@@ -15,33 +15,16 @@ require '../func/CProducts.php'
         <h1>Актуальные товары: </h1>
         <table border="1" style="width: 100%; text-align:center;">
             <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Идентификатор
-                </th>
-                <th>
-                    Название
-                </th>
-                <th>
-                    Цена
-                </th>
-                <th>
-                    Артикл товара
-                </th>
-                <th>
-                    Количество
-                </th>
-                <th>
-                    Дата создания
-                </th>
-                <th>
-                    Действие
-                </th>
+                <th>ID</th>
+                <th>Идентификатор</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Артикл товара</th>
+                <th>Количество</th>
+                <th>Дата создания</th>
+                <th>Действие</th>
             </tr>
             <?php
-
             $db = new CProducts();
 
                     if($_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -75,21 +58,11 @@ require '../func/CProducts.php'
                 }
             ?>
             <tr id="product-row-<?php echo $product['ID']; ?>">
-                <td>
-                    <?php echo $product['ID']; ?>
-                </td>
-                <td>
-                    <?php echo $product['PRODUCT_ID']; ?>
-                </td>
-                <td>
-                    <?php echo $product['PRODUCT_NAME']; ?>
-                </td>
-                <td>
-                    <?php echo $product['PRODUCT_PRICE']; ?>
-                </td>
-                <td>
-                    <?php echo $product['PRODUCT_ARTICLE']; ?>
-                </td>
+                <td><?= $product['ID']; ?></td>
+                <td><?= $product['PRODUCT_ID']; ?></td>
+                <td><?= $product['PRODUCT_NAME']; ?></td>
+                <td><?= $product['PRODUCT_PRICE']; ?></td>
+                <td><?= $product['PRODUCT_ARTICLE']; ?></td>
                 <td>
                     <form action="../view/dashboard.php" method="POST">
                         <input type="hidden" name="productId" value="<?=$product['ID']; ?>">
@@ -101,13 +74,13 @@ require '../func/CProducts.php'
                             -
                         </button>
                     </form>
-                    <?php echo $product['PRODUCT_QUANTITY']; ?>
+                    <?= $product['PRODUCT_QUANTITY']; ?>
                 </td>
                 <td>
-                    <?php echo $product['DATE_CREATE']; ?>
+                    <?= $product['DATE_CREATE']; ?>
                 </td>
                 <td>
-                    <form method="POST" action="">
+                    <form method="POST">
                         <input type="hidden" name="productId" value="<?php echo $product['ID']; ?>">
                         <button type="submit" name="hide"
                             onclick="methodHidden('<?php echo $product['ID']; ?>')">Скрыть</button>
