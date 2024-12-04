@@ -26,6 +26,7 @@ require '../func/CProducts.php'
             </tr>
             <?php
             $db = new CProducts();
+            session_start();
 
                     if($_SERVER['REQUEST_METHOD'] == 'POST' ){
                         if(isset($_POST['hide'])){
