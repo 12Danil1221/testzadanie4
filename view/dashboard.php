@@ -13,6 +13,9 @@ require '../func/CProducts.php'
 <body>
     <main>
         <h1>Актуальные товары: </h1>
+        <form method="POST">
+            <h2><button type="submit" name="session_abort">Убить сессию</button></h2>
+        </form>
         <table border="1" style="width: 100%; text-align:center;">
             <tr>
                 <th>ID</th>
@@ -38,6 +41,10 @@ require '../func/CProducts.php'
                         //Добавляем в массив сессии id товара
                         $_SESSION['hidden_products'][] = $productId;
                     }
+                    $hiddenProducts = isset($_SESSION['hidden_products']) ? $_SESSION['hidden_products'] : [];
+                    if(isset($_POST['session_abort'])){
+                        unset($_SESSION['hidden_products']);
+                    }
                         if(isset($_POST['increment'])){
                             $productId = htmlspecialchars($_POST['productId']);
                             $count = htmlspecialchars($_POST['count']);
@@ -50,7 +57,7 @@ require '../func/CProducts.php'
                             $db->dicrement( $productId, $dicrement);
                         }
                     }
-                    $hiddenProducts = isset($_SESSION['hidden_products']) ? $_SESSION['hidden_products'] : [];
+                   
             
             $products = $db->getProductsByDateDesc();
             foreach ($products as $product){
@@ -83,8 +90,8 @@ require '../func/CProducts.php'
                 <td>
                     <form method="POST">
                         <input type="hidden" name="productId" value="<?php echo $product['ID']; ?>">
-                        <button type="submit" name="hide"
-                            onclick="methodHidden('<?php echo $product['ID']; ?>')">Скрыть</button>
+                        <button type="submit" name="hide" onclick="methodHidden('<?php echo $product['ID']; ?>')">Скрыть
+                        </button>
                     </form>
                 </td>
                 <?php 
